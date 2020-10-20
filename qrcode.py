@@ -1,4 +1,4 @@
-import pyqrcodeng #importing pyqrcode for generating  qrcode
+import pyqrcodeng #importing pyqrcode module for generating  qrcode
 import pandas as pd #importing pandas to read the items in excel
 from PIL import Image,ImageDraw,ImageFont #from (pillow) PIL importing Image to display image, imagedraw to write text on image,Imagefotn to change the font of an text
 
@@ -16,15 +16,15 @@ def createQRCode():      #defining a function and iterating through for loop to 
         box = (85,85,160,160) #box are (left, upper, right, lower).
         im.crop(box)
         region = logo
-        region = region.resize((box[3] - box[1], box[3] - box[1])) #(image.width-logo.wigth),(image.height-logo.height)
+        region = region.resize((75,75))#box[3] - box[1], box[3] - box[1])) #(image.width-logo.wigth),(image.height-logo.height)
         im.paste(region,box)
 #text in image
-        font = ImageFont.truetype("arial.ttf",20)
+        font1 = ImageFont.truetype("arial.ttf",20)
         draw = ImageDraw.Draw(im)
         (x, y) = (55,-3)
         message = "Gravton Motors"
         color = 'rgb(0,0,0)'
-        draw.text((x, y), message, fill=color,font= font)
+        draw.text((x, y), message, fill=color,font= font1)
 #adding qrcode num
         font2=ImageFont.truetype("arial.ttf",15)
         message = f"{QRcode}"
@@ -32,10 +32,8 @@ def createQRCode():      #defining a function and iterating through for loop to 
         color = 'rgb(0,0,0)'
         draw.text((x, y), message, fill=color,font=font2)
         im = im.convert("RGBA")
-        im.save(f"qrcodesssss/{QRcode}.png")
-
+        im.save(f"qrcodes/{QRcode}.png")
         # im.show()
-
 
 createQRCode()
 
